@@ -1,3 +1,4 @@
+import { baseUrlApi } from "@/api/utils";
 import { http } from "@/utils/http";
 
 export type UserResult = {
@@ -30,10 +31,10 @@ export type RefreshTokenResult = {
 
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<UserResult>("post", "/login", { data });
+  return http.request<UserResult>("post", baseUrlApi("login"), { data });
 };
 
-/** 刷新token */
+/** 刷新 token */
 export const refreshTokenApi = (data?: object) => {
   return http.request<RefreshTokenResult>("post", "/refreshToken", { data });
 };

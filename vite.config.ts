@@ -6,7 +6,7 @@ import { getPluginsList } from "./build/plugins";
 import { include, exclude } from "./build/optimize";
 import { UserConfigExport, ConfigEnv, loadEnv } from "vite";
 
-/** 当前执行node命令时文件夹的地址（工作目录） */
+/** 当前执行 node 命令时文件夹的地址（工作目录） */
 const root: string = process.cwd();
 
 /** 路径查找 */
@@ -43,7 +43,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       port: VITE_PORT,
       host: "0.0.0.0",
       // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
-      proxy: {}
+      proxy: {
+        "/api": {
+          // 这里填写后端地址
+          target: "https://nf2689.console.hysli.cn",
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, "")
+        }
+      }
     },
     plugins: getPluginsList(command, VITE_CDN, VITE_COMPRESSION),
     // https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options
@@ -53,7 +60,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     build: {
       sourcemap: false,
-      // 消除打包大小超过500kb警告
+      // 消除打包大小超过 500kb 警告
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
         input: {
