@@ -1,4 +1,4 @@
-name: getRoutes
+name: login
 methods:
   - GET
   - POST
