@@ -26,11 +26,11 @@ export function getPluginsList(
       compositionOnly: true,
       include: [resolve("locales/**")]
     }),
-    // jsx、tsx 语法支持
+    // jsx、tsx语法支持
     vueJsx(),
     VITE_CDN ? cdn : null,
     configCompressPlugin(VITE_COMPRESSION),
-    // 线上环境删除 console
+    // 线上环境删除console
     removeConsole({ external: ["src/assets/iconfont/iconfont.js"] }),
     viteBuildInfo(),
     // 自定义主题
@@ -40,9 +40,9 @@ export function getPluginsList(
         extract: true
       }
     }),
-    // svg 组件化支持
+    // svg组件化支持
     svgLoader(),
-    // // mock 支持
+    // mock支持
     // viteMockServe({
     //   mockPath: "mock",
     //   localEnabled: command === "serve",
