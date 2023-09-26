@@ -38,3 +38,24 @@ export const getLogin = (data?: object) => {
 export const refreshTokenApi = (data?: object) => {
   return http.request<RefreshTokenResult>("post", "/refreshToken", { data });
 };
+
+/**
+ * @description 注册验证手机号的验证码的
+ * @param data {string}传输一个手机号码
+ * @returns
+ */
+export const register_phone_code = (data?: Object) => {
+  return http.request<RefreshTokenResult>(
+    "post",
+    "https://yi2r44.console.hysli.cn/phone_code",
+    { data }
+  );
+};
+
+export const register = (data?: Object) => {
+  return http.request<RefreshTokenResult>(
+    "post",
+    "https://yi2r44.console.hysli.cn/registerAccount",
+    { data }
+  );
+};

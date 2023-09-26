@@ -1,0 +1,5 @@
+name: phone_code
+methods:
+  - GET
+  - POST
+tags: []

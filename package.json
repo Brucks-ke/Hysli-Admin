@@ -46,6 +46,9 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "@alicloud/dysmsapi20170525": "^2.0.24",
+    "@alicloud/openapi-client": "^0.4.6",
+    "@alicloud/tea-util": "^1.4.7",
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@howdyjs/mouse-menu": "^2.0.9",
     "@logicflow/core": "^1.2.13",

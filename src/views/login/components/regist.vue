@@ -12,6 +12,7 @@ import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import Lock from "@iconify-icons/ri/lock-fill";
 import Iphone from "@iconify-icons/ep/iphone";
 import User from "@iconify-icons/ri/user-3-fill";
+import { register } from "@/api/user";
 
 const { t } = useI18n();
 const checked = ref(false);
@@ -41,18 +42,24 @@ const repeatPasswordRule = [
 ];
 
 const onUpdate = async (formEl: FormInstance | undefined) => {
+  console.log(ruleForm, "得到的所有数据");
+
   loading.value = true;
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
       if (checked.value) {
-        // 模拟请求，需根据实际开发进行修改
-        setTimeout(() => {
-          message(transformI18n($t("login.registerSuccess")), {
-            type: "success"
-          });
-          loading.value = false;
-        }, 2000);
+        const create_time = +new Date();
+        /**@这里发请求 */
+        register({
+          phone: ruleForm.phone,
+          email: ruleForm.username,
+          password: ruleForm.password,
+          phone_code: ruleForm.verifyCode,
+          create_time
+        }).then(res => {
+          console.log(res);
+        });
       } else {
         loading.value = false;
         message(transformI18n($t("login.tickPrivacy")), { type: "warning" });
@@ -77,6 +84,7 @@ function onBack() {
     :rules="updateRules"
     size="large"
   >
+    <!-- 账号 -->
     <Motion>
       <el-form-item
         :rules="[
@@ -98,6 +106,7 @@ function onBack() {
     </Motion>
 
     <Motion :delay="100">
+      <!-- 手机号 -->
       <el-form-item prop="phone">
         <el-input
           clearable
@@ -109,6 +118,7 @@ function onBack() {
     </Motion>
 
     <Motion :delay="150">
+      <!-- 发送cod -->
       <el-form-item prop="verifyCode">
         <div class="w-full flex justify-between">
           <el-input
@@ -120,7 +130,7 @@ function onBack() {
           <el-button
             :disabled="isDisabled"
             class="ml-2"
-            @click="useVerifyCode().start(ruleFormRef, 'phone')"
+            @click="useVerifyCode().start(ruleFormRef, 'phone', ruleForm.phone)"
           >
             {{
               text.length > 0

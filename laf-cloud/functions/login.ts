@@ -7,7 +7,7 @@ export default async function (ctx: FunctionContext) {
   const res = await db
     .collection("user")
     .where({
-      username: username,
+      email: username,
       password: password
     })
     .getOne();
