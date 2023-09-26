@@ -1,7 +1,7 @@
 import cloud, { FunctionContext } from "@lafjs/cloud";
-import Dysmsapi, * as dysmsapi from "@alicloud/dysmsapi20170525";
-import * as OpenApi from "@alicloud/openapi-client";
-import * as Util from "@alicloud/tea-util";
+// import Dysmsapi, * as dysmsapi from "@alicloud/dysmsapi20170525";
+// import * as OpenApi from "@alicloud/openapi-client";
+// import * as Util from "@alicloud/tea-util";
 
 export default async function (ctx: FunctionContext) {
   const { phone, email, password, phone_code, create_time } = ctx.body;

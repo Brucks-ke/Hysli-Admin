@@ -1,3 +1,4 @@
+//@ts-ignore
 import cloud, { FunctionContext } from "@lafjs/cloud";
 import Dysmsapi, * as dysmsapi from "@alicloud/dysmsapi20170525";
 import * as OpenApi from "@alicloud/openapi-client";
