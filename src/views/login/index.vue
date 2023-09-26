@@ -37,7 +37,7 @@ import globalization from "@/assets/svg/globalization.svg?component";
 import Lock from "@iconify-icons/ri/lock-fill";
 import Check from "@iconify-icons/ep/check";
 import User from "@iconify-icons/ri/user-3-fill";
-
+import messageApi from "@/utils/messageAlert";
 defineOptions({
   name: "Login"
 });
